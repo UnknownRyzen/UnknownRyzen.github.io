@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="three.min.js"></script>
+  
+    <title>Home | Rotating Cube</title>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+  </head>
+  <body oncontextmenu="return false">
+      <!-- <img class="logo" src="background.jpg"> -->
+
+
+<!--code for disabling ctr+u-->
+    <script>
+    document.onkeydown = function(e) {
+        if (e.ctrlKey && 
+            (e.keyCode === 67 || 
+             e.keyCode === 86 || 
+             e.keyCode === 85 || 
+             e.keyCode === 117)) {
+            alert('Not Allowed');
+            return false;
+        } else {
+            return true;
+        }
+};
+    </script>
+<!--END-->
+
+
+
+
+
+  <!--code for disabling f12-->
+<script>
+$(document).keydown(function (event) {
+    if (event.keyCode == 123) { // Prevent F12
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        return false;
+    }
+});
+</script>
+<!--code for disabling f12 END-->
+
+
+
+
+      <!--Code starts here-->
+<script>
+var camera, scene, renderer;
+var geometry, material, mesh;
+ 
+init();
+animate();
+ 
+function init() {
+ 
+    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+    camera.position.z = 1;
+ 
+    scene = new THREE.Scene();
+ 
+    geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+    material = new THREE.MeshNormalMaterial();
+ 
+    mesh = new THREE.Mesh( geometry, material );
+    scene.add( mesh );
+ 
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+ 
+}
+ 
+function animate() {
+ 
+    requestAnimationFrame( animate );
+ 
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.02;
+ 
+    renderer.render( scene, camera );
+ 
+}
+    </script>
+
+
+<!-- Footer -->
+<footer class="page-footer bg-info fixed-bottom">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" style="color:black">© 2019: 
+    <a href="##" style="color:black"> RYZEN</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  </body>
+</html>
